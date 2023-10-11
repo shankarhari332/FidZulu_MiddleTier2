@@ -2,21 +2,22 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = 3000; 
+const port = 3022; 
 
 app.use(express.json());
 
 app.get('/health', (req, res) => {
-    res.json({ status: 'Middle-tier server is running' });
-  });
-  
-app.post('/classA/all', async (req, res) => {
+  res.json({ status: 'Middle-tier server is running' });
+});
+
+app.post('/classB/:servicename/all/location', async (req, res) => {
   try {
-    if (!req.body || !req.body.data) {
+    const serviceName = req.params.servicename;
+    if (!req.body) {
       return res.status(400).json({ error: 'Bad Request: Missing data in the request.' });
     }
 
-    const response = await axios.post('http://localhost:8080/api', req.body);
+    const response = await axios.post(`http://localhost:${getServicePort(serviceName)}/location`, req.body);
 
     if (!response || !response.data) {
       return res.status(500).json({ error: 'Invalid response from the backend server.' });
@@ -36,7 +37,19 @@ app.post('/classA/all', async (req, res) => {
   }
 });
 
+function getServicePort(servicename) {
+  switch (servicename) {
+    case 'Books':
+      return 3034;
+    case 'DVDs':
+      return 3035;
+    case 'Laptops':
+      return 3036;
+    default:
+      return 0;
+  }
+}
+
 app.listen(port, () => {
   console.log(`Middle-tier server is running on port ${port}`);
 });
-
