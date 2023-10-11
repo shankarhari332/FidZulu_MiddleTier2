@@ -1,34 +1,3 @@
-// axios=require('axios');
-// express=require('express');
-// const port = process.env.PORT || 3032;
-// app=express();
-// result;
-
-// function makeGetRequest(path) {
-//     axios.get(path).then(
-//         (response) => {
-//             result = response.data;
-//         },
-//         (error) => {
-//             result=error.response.stat;
-//             console.log(error);
-//         }
-//     );
-// }
-
-// app.listen(port, () => {
-//     console.log("Server Listening on PORT:", port);
-//   });
-
-//   app.get('/status', (request, response) => {
-//     if(result==null)
-//         response.send()
-//     response.send(result);
-//  });
-
-// // makeGetRequest('https://reqres.in/api/users?page=21');
-// makeGetRequest('lol');
-
 const axios = require('axios');
 const express = require('express');
 const app = express();
