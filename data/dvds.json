@@ -1,0 +1,13 @@
+{
+       "productId": 4001,
+       "productName": "Inception",
+       "productDescription": "A mind-bending science fiction thriller directed by Christopher Nolan.",
+       "price": 14.99,
+       "rating": 4.7,
+       "genre": "Science Fiction",
+       "director": "Christopher Nolan",
+       "format": "Blu-ray",
+       "runtime": "148 minutes",
+       "releaseYear": 2010,
+       "imageUrl": "https://example.com/dvds/4001"
+   }
