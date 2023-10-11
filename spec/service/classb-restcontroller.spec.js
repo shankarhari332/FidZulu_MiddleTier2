@@ -1,76 +1,39 @@
-// const ClassBRestController = require('../../src/service/classb-restcontroller');
+axios = require('axios');
 
-// console.error = arg => {}
+const url="http://localhost:3022/classB/team";
 
-// const testDvds = [
-//     {
-//         "productId": 4001,
-//         "productName": "Inception",
-//         "productDescription": "A mind-bending science fiction thriller directed by Christopher Nolan.",
-//         "price": 16.1892,
-//         "rating": 4.7,
-//         "genre": "Science Fiction",
-//         "director": "Christopher Nolan",
-//         "format": "Blu-ray",
-//         "runtime": "148 minutes",
-//         "releaseYear": 2010,
-//         "imageUrl": "https://example.com/dvds/4001"
-//         },
-//         {
-//         "productId": 4002,
-//         "productName": "The Matrix",
-//         "productDescription": "A classic cyberpunk action film directed by the Wachowskis.",
-//         "price": 14.029200000000001,
-//         "rating": 4.5,
-//         "genre": "Science Fiction",
-//         "director": "The Wachowskis",
-//         "format": "DVD",
-//         "runtime": "136 minutes",
-//         "releaseYear": 1999,
-//         "imageUrl": "https://example.com/dvds/4002"
-//         }
-// ];
+const table={
+    "team": "Class-B Middle Tier Service",
+    "membersNames": [
+    "Swaroop S Jadhav",
+    "Srilakshman Srinivasan",
+    "T Sai Amith",
+    "Harishankar V"
+    ]
+};
 
-// describe('RESTful controller unit tests for Dvd operations:', () => {
-//     let controller;
-//     let mockDao;
-//     let mockHttpResponse;
+describe("Get all team members", () => {
+    it("succeeds", async() => {
+        const response=await axios.get(url);
+        expect(response.data).toBeTruthy();
+    })
+})
 
-//     beforeEach(() => {
-//         mockDao = jasmine.createSpyObj('mockDao', ['queryForAllDvds']);
+describe("Get all team members", () => {
+    it("succeeds", async() => {
+        const response=await axios.get(url);
+        expect(response.status).toEqual(200);
+    })
+})
 
-//         controller = new ClassBRestController();
-//         controller.productDao = mockDao;
-
-//         mockHttpResponse = jasmine.createSpyObj('mockHttpResponse', ['status', 'json']);
-
-//         // The mock status() method needs to return a reference to the 
-//         // mock response so it can be chained with other calls:
-//         //    res.status(500).json(...)
-//         mockHttpResponse.status.and.returnValue(mockHttpResponse);
-//     });
-
-//     describe('retrieve all widgets', () => {
-//         it('succeeds', () => {
-//             mockDao.queryForAllWidgets.and.returnValue(testWidgets);
-//             const req = { };
-
-//             controller.getAllWidgets(req, mockHttpResponse);
-        
-//             expect(mockHttpResponse.json).toHaveBeenCalledOnceWith(testWidgets);
-//         });
-
-//         it('fails due to a DAO exception', () => {
-//             mockDao.queryForAllWidgets.and.throwError('error');
-//             const req = { };
-
-//             controller.getAllWidgets(req, mockHttpResponse);
-                
-//             expect(mockHttpResponse.status).toHaveBeenCalledOnceWith(500);
-
-//             // We could test whether send() was called, but we don't really
-//             // care about the body of the response as long as the status is 500.
-//             // A best practice is to keep "white box" testing (that is, tests that
-//             // depend on the implementation of a method) to a minimum.
-//         });
-//     });
+describe("Handle invalid url", () => {
+    it("succeeds", async() => {
+        try {
+            const response=await axios.get(url+"-1");
+            fail("This is an invalid URL");
+        }
+        catch(err) {
+            expect(err.response.status).toEqual(404);
+        }
+    })
+})
