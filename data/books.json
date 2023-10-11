@@ -1,0 +1,12 @@
+{
+    "productId": 201157,
+    "productName": "The Lord of the Rings",
+    "productDescription": "The Lord of the Rings is a high-fantasy epic novel written by English author and scholar J.R.R. Tolkien. It is one of the most renowned works in the fantasy genre, set in the fictional world of Middle-earth.",
+    "price": 25.99,
+    "rating": 4.8,
+    "author": "J.R.R. Tolkien",
+    "publisher": "Houghton Mifflin Harcourt",
+    "format": "Hardcover",
+    "language":"English",
+    "imageUrl": "https://example.com/lord-of-the-rings.jpg"
+  }

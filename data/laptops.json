@@ -1,0 +1,17 @@
+
+{
+    "productId": 1001,
+    "productName": "Acer Aspire 5",
+    "productDescription": "Slim and lightweight laptop for everyday use.",
+    "price": 699.99,
+    "rating": 4.5,
+    "processor": "Intel Core i5-1035G1",
+    "operatingSystem": "Windows 10 Home",
+    "videoCard": "Intel UHD Graphics",
+    "memory": "8GB DDR4",
+    "hardDisk": "256GB SSD",
+    "lcd": "15.6\" Full HD IPS",
+    "colorChoice": "Silver",
+    "keyboard": "Backlit",
+    "ImageUrl": "https://example.com/laptops/1001"
+}

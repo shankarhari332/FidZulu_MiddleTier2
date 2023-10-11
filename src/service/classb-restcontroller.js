@@ -1,18 +1,11 @@
+
 const express = require('express');
 
 const axios = require('axios');
 
-
-// TODO delete the "require" of the DAO module
-const ProductDao = require('../dao/mock-classb-dao');
-
 class ClassBRestController {
     constructor() { 
-        this.port = process.env.PORT || 3022;
-        this.backendApiUrl = "h";
-
-        // TODO Delete the creation of the DAO
-        this.productDao = new ProductDao();
+        this.port = 3022;
 
         this.app = express();
 
@@ -20,12 +13,14 @@ class ClassBRestController {
 
         
         const router = express.Router();
-        router.get('/books', this.getAllBooks.bind(this));
-        router.get('/dvds', this.getAllDvds.bind(this));
-        router.get('/laptops', this.getAllLaptops.bind(this));
-        
-        router.options('/restart', this.restart.bind(this));
-        router.options('/stop', this.stop.bind(this));
+        router.get('/classB/books/all/:location', this.getAllBooks.bind(this));
+        router.get('/classB/dvds/all/:location', this.getAllDvds.bind(this));
+        router.get('/classB/laptops/all/:location', this.getAllLaptops.bind(this));
+
+        router.get('/classB/books/team', this.getBooksTeam.bind(this));
+        router.get('/classB/dvds/team', this.getDvdsTeam.bind(this));
+        router.get('/classB/laptops/team', this.getLaptopsTeam.bind(this));
+        router.get('/classB/team', this.getClassBTeam.bind(this));
 
         this.app.use('/', router);
     }
@@ -36,100 +31,112 @@ class ClassBRestController {
     }
 
 
-    getAllBooks(req, res) {
-        try {
-            // TODO Replace the call to the DAO method with an HTTP request
-            //      to the back-end API. Your code may look like this:
-            //          const backEndResp = ...
-            //          const contacts = backEndResp.data;
-            // HINT Axios functions all return Promises, so you'll need to 'await'
-            //      each Axios function call.
-            // HINT Remember to add 'async' to the enclosing method definition.
-            // HINT See slide 8-18
-            const books = this.ProductDao.getAllBooks();
+    async getAllBooks(req, res) {
+        const param = req.params.location;
 
-            res.json(books);
-        }
-        catch (err) {
-            console.error(`error on GET books: ${err}`);
-            res.status(500).json({error: err});
-        }
+        if(param == "US-NC" || param == "IN" || param == "IRE"){
+            
+            try {
+                const apiResponse = await axios.get('http://localhost:3034/dvd/all/' + param);
+                res.status(200).json(apiResponse.data);
+              } catch (error) {
+                res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+              }
     }
-
-    getAllDvds(req, res) {
-        try {
-            // TODO Replace the call to the DAO method with an HTTP request
-            //      to the back-end API. Your code may look like this:
-            //          const backEndResp = ...
-            //          const contacts = backEndResp.data;
-            // HINT Axios functions all return Promises, so you'll need to 'await'
-            //      each Axios function call.
-            // HINT Remember to add 'async' to the enclosing method definition.
-            // HINT See slide 8-18
-            const dvds = this.ProductDao.getAllDvds();
-
-            res.json(dvds);
-        }
-        catch (err) {
-            console.error(`error on GET dvds: ${err}`);
-            res.status(500).json({error: err});
-        }
-    }
-
-    getAllLaptops(req, res) {
-        try {
-            // TODO Replace the call to the DAO method with an HTTP request
-            //      to the back-end API. Your code may look like this:
-            //          const backEndResp = ...
-            //          const contacts = backEndResp.data;
-            // HINT Axios functions all return Promises, so you'll need to 'await'
-            //      each Axios function call.
-            // HINT Remember to add 'async' to the enclosing method definition.
-            // HINT See slide 8-18
-            const laptops = this.ProductDao.getAllLaptops();
-
-            res.json(laptops);
-        }
-        catch (err) {
-            console.error(`error on GET laptops: ${err}`);
-            res.status(500).json({error: err});
-        }
-    }
-
-    stop(req, res) {
-        try {
-            // TODO Replace the call to the DAO method with the following HTTP request
-            //      to the back-end API:
-            //          await axios.options(this.backendApiUrl + '/shutdown');
-            this.contactDao.shutdown();
-
-            if (res) {
-                res.sendStatus(204);
-            }
-        }
-        catch (err) {
-            console.error(`error shutting down: ${err}`);
-            res.status(500).json({error: err});
-        }
-    }
-
-    /* 
-     * Our test cases will use restart to restore the mock database
-     * to its initial state before each spec.
-     */
-    restart(req, res) {
-        // TODO Replace the call to the DAO method with the following HTTP request
-        //      to the back-end API:
-        //          await axios.options(this.backendApiUrl + '/restart');
-        this.productDao = new ProductDao();
-
-        res.sendStatus(204);
+    else{
+        let msg = "Wrong location";
+        res.status(404).json({ error: 'An error occurred while fetching data from the API - Invalid Location' });
     }
 }
 
-module.exports = ProductsRestController;
+    async getAllDvds(req, res) {
+        const param = req.params.location;
+
+        if(param == "US-NC" || param == "IN" || param == "IRE"){
+            
+            try {
+                const apiResponse = await axios.get('http://localhost:3035/dvd/all/' + param);
+                res.status(200).json(apiResponse.data);
+              } catch (error) {
+                res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+              }
+    }
+    else{
+        let msg = "Wrong location";
+        res.status(404).json({ error: 'An error occurred while fetching data from the API - Invalid Location' });
+    }
+              }
+
+    async getAllLaptops(req, res) {
+        
+        const param = req.params.location;
+
+        if(param == "US-NC" || param == "IN" || param == "IRE"){
+            
+            try {
+                const apiResponse = await axios.get('http://localhost:3036/dvd/all/' + param);
+                res.status(200).json(apiResponse.data);
+              } catch (error) {
+                res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+              }
+    }
+    else{
+        let msg = "Wrong location";
+        res.status(404).json({ error: 'An error occurred while fetching data from the API - Invalid Location' });
+    }
+
+    }
+
+    async getBooksTeam(req, res){
+        try {
+            const apiResponse = await axios.get('http://localhost:3034/dvd/team');
+            res.status(200).json(apiResponse.data);
+          } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+          }
+    }
+
+    async getDvdsTeam(req, res){
+       
+        try {
+            const apiResponse = await axios.get('http://localhost:3035/dvd/team');
+            res.status(200).json(apiResponse.data);
+          } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+          }
+    }
+
+    async getLaptopsTeam(req, res){
+        
+        try {
+            const apiResponse = await axios.get('http://localhost:3036/dvd/team');
+            res.status(200).json(apiResponse.data);
+          } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+          }
+    }
+
+    getClassBTeam(req, res){
+
+        const classBFile = `data/team.json`;
+        const fs = require('fs');
+
+        const teamDetails = fs.readFileSync(classBFile, 'utf-8');
+        let teamData = JSON.parse(teamDetails);
+
+        try {
+            const apiResponse = JSON.stringify(teamData);
+            res.setHeader('content-type', 'application/json');
+            res.end(JSON.stringify(apiResponse));
+          } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
+          }
+    }
+}
+
+module.exports = ClassBRestController;
 
 if (require.main === module) {
-    const api = new ProductsRestControllerRestController();
+    const api = new ClassBRestController();
     api.start();
 }
