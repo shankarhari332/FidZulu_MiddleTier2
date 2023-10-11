@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = 3021; 
+const port = 3022; 
 
 app.use(express.json());
 
@@ -10,7 +10,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'Middle-tier server is running' });
 });
 
-app.post('/classA/:servicename/all/location', async (req, res) => {
+app.post('/classB/:servicename/all/location', async (req, res) => {
   try {
     const serviceName = req.params.servicename;
     if (!req.body) {
@@ -39,12 +39,12 @@ app.post('/classA/:servicename/all/location', async (req, res) => {
 
 function getServicePort(servicename) {
   switch (servicename) {
-    case 'Bike':
-      return 3031;
+    case 'Books':
+      return 3034;
     case 'Food':
-      return 3032;
+      return 3035;
     case 'Toys':
-      return 3033;
+      return 3036;
     default:
       return 0;
   }
