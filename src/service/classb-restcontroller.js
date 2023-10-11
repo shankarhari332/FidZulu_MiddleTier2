@@ -22,6 +22,8 @@ class ClassBRestController {
         router.get('/classB/laptops/team', this.getLaptopsTeam.bind(this));
         router.get('/classB/team', this.getClassBTeam.bind(this));
 
+        router.post('/classB/:servicename/all/location', this.postClassB.bind(this));
+
         this.app.use('/', router);
     }
 
@@ -132,6 +134,46 @@ class ClassBRestController {
             res.status(500).json({ error: 'An error occurred while fetching data from the API.' });
           }
     }
+
+    async postClassB(req, res){
+        try {
+          const serviceName = req.params.servicename;
+          if (!req.body) {
+            return res.status(400).json({ error: 'Bad Request: Missing data in the request.' });
+          }
+      
+          const response = await axios.post(`http://localhost:${getServicePort(serviceName)}/location`, req.body);
+      
+          if (!response || !response.data) {
+            return res.status(500).json({ error: 'Invalid response from the backend server.' });
+          }
+      
+          res.json(response.data);
+        } catch (error) {
+          console.error(error);
+      
+          if (error.code === 'ECONNREFUSED') {
+            res.status(500).json({ error: 'Backend server is unreachable.' });
+          } else if (error.code === 'ETIMEDOUT') {
+            res.status(500).json({ error: 'Request to the backend server timed out.' });
+          } else {
+            res.status(500).json({ error: 'Internal Server Error' });
+          }
+        }
+      }
+      
+      getServicePort(servicename) {
+        switch (servicename) {
+          case 'Books':
+            return 3034;
+          case 'Food':
+            return 3035;
+          case 'Toys':
+            return 3036;
+          default:
+            return 0;
+        }
+      }
 }
 
 module.exports = ClassBRestController;
