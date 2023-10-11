@@ -31,13 +31,17 @@
 //         }
 // ];
 
-// describe('RESTful controller unit tests for Dvd operations:', () => {
+// const testBooks = [
+    
+// ]
+
+// describe('RESTful controller unit tests for Books operations:', () => {
 //     let controller;
 //     let mockDao;
 //     let mockHttpResponse;
 
 //     beforeEach(() => {
-//         mockDao = jasmine.createSpyObj('mockDao', ['queryForAllDvds']);
+//         mockDao = jasmine.createSpyObj('mockDao', ['queryForAllBooks']);
 
 //         controller = new ClassBRestController();
 //         controller.productDao = mockDao;
@@ -50,9 +54,9 @@
 //         mockHttpResponse.status.and.returnValue(mockHttpResponse);
 //     });
 
-//     describe('retrieve all widgets', () => {
+//     describe('retrieve all books', () => {
 //         it('succeeds', () => {
-//             mockDao.queryForAllWidgets.and.returnValue(testWidgets);
+//             mockDao.q.and.returnValue(testWidgets);
 //             const req = { };
 
 //             controller.getAllWidgets(req, mockHttpResponse);
