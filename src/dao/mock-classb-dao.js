@@ -1,5 +1,5 @@
 /**
- * Test DAO for CRUD operations on Class B services - books, laptops, DVDs.
+ * Test DAO for CRUD operations on Class B services - books, laptops, DVDs services
  */
 
 const fs = require('fs');
