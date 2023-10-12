@@ -1,6 +1,8 @@
 # FidZulu_MiddleTier2
 This project contains the middle tier for FidZulu main application built in Node.JS and tested
 
+---
+
 # Endpoints
 
 These are the endpoints provided by our service:
@@ -21,9 +23,14 @@ These are the endpoints provided by our service:
 > This endpoint provides a list of DVDs in the JSON format
 >http://52.90.59.144/classB/all/team
 
+---
+
 # The Team
 
-1.Harishankar V
-2.Sai Amith T
-3.Swaroop S Jadhav
-4.Srilakshman S
+**Harishankar V**
+
+**Sai Amith T**
+
+**Swaroop S Jadhav**
+
+**Srilakshman S**
