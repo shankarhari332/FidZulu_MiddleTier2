@@ -14,8 +14,9 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
         run: docker build -t fidzulu/fidzulu_middletier2 .
+      - name: tag image to docker hub repo
+        run: docker tag fidzulu_middletier2:latest fidzulu/fidzulu_middletier2:
       - name: Publish image to docker hub
-        run: docker tag fidzulu_middletier2:latest fidzulu/fidzulu_middletier2:latest
         run: docker push fidzulu/fidzulu_middletier2:latest
 
   
