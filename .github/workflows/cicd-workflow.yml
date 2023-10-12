@@ -15,7 +15,7 @@ jobs:
       - name: Build docker image
         run: docker build -t fidzulu/fidzulu_middletier2 .
       - name: tag image to docker hub repo
-        run: docker tag fidzulu_middletier2:latest fidzulu/fidzulu_middletier2:
+        run: docker tag fidzulu_middletier2:latest fidzulu/fidzulu_middletier2:latest
       - name: Publish image to docker hub
         run: docker push fidzulu/fidzulu_middletier2:latest
 
