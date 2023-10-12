@@ -15,7 +15,7 @@ jobs:
       - name: Build docker image
         run: docker build -t fidzulu_middletier2 .
       - name: logout of previous session
-        uses: docker logout
+        run: docker logout
       - name: tag image to docker hub repo
         run: docker tag fidzulu_middletier2:latest eac19019/fidzulu/fidzulu_middletier2:latest
       - name: Login to docker hub
