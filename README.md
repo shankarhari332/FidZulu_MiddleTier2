@@ -23,7 +23,7 @@ These are the endpoints provided by our service:
 
 # The Team
 
--Harishankar V
--"Sai Amith T
--Swaroop S Jadhav
--Srilakshman S
+1.Harishankar V
+2.Sai Amith T
+3.Swaroop S Jadhav
+4.Srilakshman S
