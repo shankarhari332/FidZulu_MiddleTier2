@@ -1,9 +1,32 @@
-{
-    "team": "Class-B Middle Tier Service",
-    "membersNames": [
-    "Swaroop S Jadhav",
-    "Srilakshman Srinivasan",
-    "T Sai Amith",
-    "Harishankar V"
-    ]
-}
+[
+    {
+        "name": "Book Service team",
+        "members": [
+            "Shreenidhi Kulkarni",
+            "Tejaswi Kanumuri"
+        ]
+    },
+    {
+        "name": "DVD Service team",
+        "members": [
+            "Mehul Rana",
+            "Rushil Reddy"
+        ]
+    },
+    {
+        "name": "Laptop Service team",
+        "members": [
+            "Solipuram Akshith Reddy",
+            "Riti"
+        ]
+    },
+    {
+        "name": "Middle Tier Class B",
+        "members": [
+            "Harishankar V",
+            "Sai Amith T",
+            "Swaroop S Jadhav",
+            "Srilakshman S"
+        ]
+    }
+]
