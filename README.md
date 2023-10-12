@@ -1,7 +1,7 @@
 # FidZulu_MiddleTier2
 This project contains the middle tier for FidZulu main application.  
 
-# #Endpoints
+# # Endpoints
 
 These are the endpoints provided by our service:
 
