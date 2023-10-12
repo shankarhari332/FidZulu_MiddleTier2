@@ -17,11 +17,11 @@ jobs:
       - name: logout of previous session
         run: docker logout
       - name: tag image to docker hub repo
-        run: docker tag fidzulu_middletier2:latest eac19019/fidzulu/fidzulu_middletier2:latest
+        run: docker tag fidzulu_middletier2 eac19019/fidzulu/fidzulu_middletier2
       - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Publish image to docker hub
-        run: docker push eac19019/fidzulu/fidzulu_middletier2:latest
+        run: docker push eac19019/fidzulu/fidzulu_middletier2
 
   
   deploy:
