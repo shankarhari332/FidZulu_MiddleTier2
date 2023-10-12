@@ -11,11 +11,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
       - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
+        run: docker login -u ${{secrets.A_DOCKER_USERNAME}} -p ${{secrets.A_DOCKER_PASSWORD}} 
       - name: Build docker image
-        run: docker build -t eac19019/fidzulu/fidzulu_middletier2 .
+        run: docker build -t fidzulu/fidzulu_middletier2 .
       - name: Publish image to docker hub
-        run: docker push eac19019/fidzulu/fidzulu_middletier2:latest
+        run: docker push fidzulu/fidzulu_middletier2:latest
 
   
   deploy:
